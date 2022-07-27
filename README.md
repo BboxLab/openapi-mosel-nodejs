@@ -65,11 +65,12 @@ import {
 
   [...]
 
+  @Post('/emails/check')
   async checkEmail(@Body() checkEmailInput: CheckEmailInput): Promise<string> {
     // check the email by creating an sdk with credentials and defaut config
     return await new Sdk(
         // new Credentials(process.env.BT_API_LOGIN, process.env.BT_API_PWD),
-        new Credentials('', ''),
+        new Credentials('clientId', 'secret'),
         new ConfigurationCreator().createApConfig(), // generate the by defaut config
       ).checkEmail(new EmailCheckerInput(checkEmailInput.emailAddress)); // input is {"emailAddress": "myemail@example.com"}
     }
