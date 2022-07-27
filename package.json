@@ -1,5 +1,5 @@
 {
-  "name": "mosel-sdk",
+  "name": "@bboxlab/mosel-sdk",
   "version": "0.1.0",
   "description": "",
   "main": "dist/index.cjs.js",
