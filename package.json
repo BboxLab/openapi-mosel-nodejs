@@ -15,7 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
-    "class-transformer": "^0.5.1",
     "joi": "^17.6.0",
     "reflect-metadata": "^0.1.13"
   },
