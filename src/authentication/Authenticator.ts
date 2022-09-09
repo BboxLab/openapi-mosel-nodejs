@@ -4,8 +4,7 @@ import { Configuration } from "../configuration/Configuration";
 import { Validator } from "../validation/Validator";
 import { Credentials, credentialsValidationSchema } from "./Credentials";
 import { Token } from "./Token";
-
-const Joi = require("joi");
+import * as Joi from "joi";
 
 export const oauthResponseValidationSchema = Joi.object({
   access_token: Joi.string().required(),
@@ -18,13 +17,12 @@ export const oauthResponseValidationSchema = Joi.object({
 export const composeTokenFromResponse = async (
   validator: Validator,
   response: any,
-  token: Token = null
 ): Promise<Token> => {
   // validate the token output from bt
   await validator.validate(response, oauthResponseValidationSchema);
 
-  // transform automatically the plain json object into a es6 object
-  token = plainToInstance(Token, response);
+  // transform automatically the plain json object into an es6 object
+  let token = plainToInstance(Token, response);
 
   // we remember it's a token that it has been created here
   token.created_at = new Date();
@@ -39,7 +37,7 @@ export class Authenticator {
     configuration: Configuration,
     client: MoselClient,
     validator: Validator,
-    token: Token = null
+    token: Token | null = null
   ): Promise<Token | any> => {
     // validate credentials
     await validator.validate(credentials, credentialsValidationSchema);
@@ -64,7 +62,7 @@ export class Authenticator {
       );
 
       // validate the token output from bt
-      token = await composeTokenFromResponse(validator, oauthResponse, token);
+      token = await composeTokenFromResponse(validator, oauthResponse);
     }
 
     return token;

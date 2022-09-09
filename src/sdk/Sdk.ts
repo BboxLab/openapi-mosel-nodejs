@@ -14,7 +14,7 @@ export class Sdk {
     (this.credentials = credentials), (this.configuration = configuration);
   }
 
-  async checkEmail(input: EmailCheckerInput, token: Token = null) {
+  async checkEmail(input: EmailCheckerInput, token: Token | null = null) {
     try {
       return await new EmailChecker().check(
         input,
@@ -29,7 +29,7 @@ export class Sdk {
     }
   }
 
-  async checkIban(input: IbanCheckerInput, token: Token = null) {
+  async checkIban(input: IbanCheckerInput, token: Token | null = null) {
     try {
       return await new IbanChecker().check(
         input,
