@@ -73,7 +73,7 @@ export class Checker {
             checkResponse = {
                 'responseLabel':  true
             };
-            // checkResponse[responseLabel] = true;
+            checkResponse[responseLabel] = true;
         }
 
         // 5) return response with a validated token and check email response
