@@ -1,4 +1,7 @@
 export class MoselClient {
+  static mockClear() {
+    throw new Error("Method not implemented.");
+  }
   postMethod = "post";
   getMethod = "get";
 

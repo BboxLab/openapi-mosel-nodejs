@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rm -rf dist && rollup -c",
     "push": "rm -rf dist && rollup -c && yalc publish",
-    "test": "jest"
+    "test": "jest -t 'default-check-authenticator'"
   },
   "files": [
     "dist"
@@ -27,6 +27,7 @@
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.3",
+    "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^28.1.8",
     "@types/joi": "^17.2.3",
     "@types/mocha": "^9.1.1",
@@ -34,7 +35,7 @@
     "babel-jest": "^28.1.3",
     "jest": "^28.1.3",
     "rollup": "^2.76.0",
-    "ts-jest": "^28.0.7",
+    "ts-jest": "^28.0.8",
     "typescript": "^4.7.4"
   }
 }
