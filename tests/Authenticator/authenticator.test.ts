@@ -22,18 +22,28 @@ test("default-check-authenticator", async () => {
 
   expect(MoselClient).toHaveBeenCalledTimes(1);
 
-  // need to replace requestBtOpenApi function
-  console.log(MoselClient);
+  // create a mock instance of Mosel Client
+  const mockMoselClientInstance = MoselClient.mock.instances[0];
 
-  // const response = "a token example";
-  // MoselClient.requestBtOpenApi.mockResolvedValue(response);
+  // mock the response for http call
+  const tokenResponse = {
+    "access_token": "a fake token",
+    "expires_in": 3600,
+    "token_type": "Bearer",
+    "refresh_credit": 0,
+    "scope": "EXT_PostalAddressConsult EXT_SalesPartnerContext EXT_ShoppingCartManage openid EXT_IbanConsult roles profile DocumentConsult EXT_CustomerAccountManage EXT_EmailAddressConsult EXT_PortabilityConsult EXT_OrderManage"
+  };
 
-  // const token: Token = await authenticator.authenticate(
-  //   credentials,
-  //   configuration,
-  //   client,
-  //   validator
-  // );
+  mockMoselClientInstance.requestBtOpenApi.mockImplementationOnce(() => tokenResponse);
+  // jest.spyOn(mockMoselClientInstance, 'requestBtOpenApi').mockImplementation(() => tokenResponse);
+
+  // fetch with mock
+  const token: Token = await authenticator.authenticate(
+    credentials,
+    configuration,
+    client,
+    validator
+  );
 });
 
 // test("authenticate-check-token", () => {

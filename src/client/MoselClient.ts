@@ -1,34 +1,62 @@
-export class MoselClient {
-  static mockClear() {
-    throw new Error("Method not implemented.");
+const axios = require("axios").default;
+import { AxiosBasicCredentials, AxiosRequestConfig, AxiosRequestHeaders } from "axios";
+
+export const mytest = () => {
+  console.log('mytest');
+}
+
+export async function requestBtOpenApi(
+  method: string,
+  url: string,
+  data: null | object = null,
+  headers: null | AxiosRequestHeaders = null,
+  auth: null | AxiosBasicCredentials = null,
+  timeout: number = 4000
+): Promise<any> {
+  const config: AxiosRequestConfig = {
+    method: method,
+    url: url,
+    data: data,
+    auth: auth,
+    headers: headers,
+    timeout: timeout,
   }
+  return axios(config)
+  .then((response) => {
+    return response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
+
+export class MoselClient {
   postMethod = "post";
   getMethod = "get";
-
-  axios = require("axios");
 
   async requestBtOpenApi(
     method: string,
     url: string,
     data: null | object = null,
-    headers: null | object = null,
-    auth: null | object = null,
+    headers: null | AxiosRequestHeaders = null,
+    auth: null | AxiosBasicCredentials = null,
     timeout: number = 4000
   ): Promise<any> {
-    return this.axios({
+    const config: AxiosRequestConfig = {
       method: method,
       url: url,
       data: data,
       auth: auth,
       headers: headers,
       timeout: timeout,
+    }
+    return axios(config)
+    .then((response) => {
+      return response.data;
     })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   handleBtRequestError() {}
