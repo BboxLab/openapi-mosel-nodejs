@@ -5,6 +5,7 @@ import { Validator } from "../validation/Validator";
 import { Credentials, credentialsValidationSchema } from "./Credentials";
 import { Token } from "./Token";
 import * as Joi from "joi";
+import { MoselError } from "../error/MoselError";
 
 export const oauthResponseValidationSchema = Joi.object({
   access_token: Joi.string().required(),
@@ -32,13 +33,13 @@ export const composeTokenFromResponse = async (
 };
 
 export class Authenticator {
-  authenticate = async (
+  async authenticate(
     credentials: Credentials,
     configuration: Configuration,
     client: MoselClient,
     validator: Validator,
     token: Token | null = null
-  ): Promise<Token | any> => {
+  ): Promise<Token | any> {
     // validate credentials
     await validator.validate(credentials, credentialsValidationSchema);
 
@@ -53,16 +54,20 @@ export class Authenticator {
 
     // check token date expiration
     if (!token) {
-      const oauthResponse = await client.requestBtOpenApi(
-        client.postMethod,
-        configuration.oauthCredentialsUrl,
-        null,
-        headers,
-        auth
-      );
+      try {
+        const oauthResponse = await client.requestBtOpenApi(
+          client.postMethod,
+          configuration.oauthCredentialsUrl,
+          null,
+          headers,
+          auth
+        );
 
-      // validate the token output from bt
-      token = await composeTokenFromResponse(validator, oauthResponse);
+        // validate the token output from bt
+        token = await composeTokenFromResponse(validator, oauthResponse);
+      } catch(e) {
+        throw new MoselError(`[Mosel Error]: an error occurs when fetching token for authentication`);
+      }
     }
 
     return token;
