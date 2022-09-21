@@ -70,9 +70,7 @@ export class Checker {
 
         // create a custom response if there is no response
         if (!checkResponse) {
-            checkResponse = {
-                'responseLabel':  true
-            };
+            checkResponse = {};
             checkResponse[responseLabel] = true;
         }
 
