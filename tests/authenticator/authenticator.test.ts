@@ -93,5 +93,4 @@ test("invalid-token-response-authentication", async () => {
   await expect(authenticateFunction)
   .rejects
   .toThrow("[Mosel Error]: an error occurs when fetching token for authentication")
-
 });
