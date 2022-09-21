@@ -24,12 +24,21 @@ export class Checker {
         this.configuration = configuration;
     }
 
+    writeCustomResponse = (response) => {
+        if (!response) {
+            return {
+                'responseLabel':  true
+            };
+            // checkResponse[responseLabel] = true;
+        }
+    }
+
     check = async(
         input:any,
         inputValidationSchema: any,
         configurationType:string,
         ouputValidationSchema: any,
-        token:Token = null,
+        token:Token | null = null,
         responseLabel = 'response'
     ) => {
         // 1) validate input and configuration
@@ -61,7 +70,9 @@ export class Checker {
 
         // create a custom response if there is no response
         if (!checkResponse) {
-            checkResponse = {};
+            checkResponse = {
+                'responseLabel':  true
+            };
             checkResponse[responseLabel] = true;
         }
 

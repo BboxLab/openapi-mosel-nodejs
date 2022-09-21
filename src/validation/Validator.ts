@@ -7,18 +7,25 @@ import { httpStatusCodes } from "../http/Status";
 export class Validator {
   /** validate input and configuration */
   validateInput = async (input:any, validationSchemeInput:any, configuration: Configuration) => {
-    await this.validate(input, validationSchemeInput);
+    // validate the configuration
     await this.validate(configuration, configurationValidationSchema);
+
+    // validate the input
+    await this.validate(input, validationSchemeInput);
   }
 
   composeValidationErrorMessage = (validationResponse: ValidationResult) => {
     let errorsMessages: string = "";
 
-    validationResponse.error.details.map(
-      (error: ValidationErrorItem, index: number) => {
-        errorsMessages += `Error ${index + 1}: ${error.message}. `;
-      }
-    );
+    if (validationResponse && validationResponse.error && validationResponse.error.details && validationResponse.error.details) {
+      validationResponse.error.details.map(
+        (error: ValidationErrorItem, index: number) => {
+          errorsMessages += `Error ${index + 1}: ${error.message}. `;
+        }
+      );
+    } else {
+      errorsMessages = `Error unknown: unexpected error during data validation in Mosel Validator. `
+    }
 
     return errorsMessages;
   };
@@ -28,11 +35,18 @@ export class Validator {
     let validationResponse: ValidationResult = scheme.validate(input);
 
     if (validationResponse.error) {
-      // generate the custom error
-      // throw new MoselValidationError('A description', 400, 'Some parameters');
+      console.log('error', validationResponse.error);
+      
+      const errorName = validationResponse.error.name ?validationResponse.error.name : 'Unknown error';
 
+      // display error in console
+      console.log(`${errorName}: ${this.composeValidationErrorMessage(
+        validationResponse
+      )}`);
+
+      // generate the custom error
       throw new MoselValidationError(
-        `${validationResponse.error.name}: ${this.composeValidationErrorMessage(
+        `${errorName}: ${this.composeValidationErrorMessage(
           validationResponse
         )}`,
         httpStatusCodes.BAD_REQUEST,

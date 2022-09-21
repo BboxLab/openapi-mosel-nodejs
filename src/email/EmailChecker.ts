@@ -4,8 +4,7 @@ import { Checker } from "../checker/Checker";
 import { MoselClient } from "../client/MoselClient";
 import { Configuration } from "../configuration/Configuration";
 import { Validator } from "../validation/Validator";
-
-const Joi = require("joi");
+import * as Joi from "joi";
 
 export const emailInputValidationSchema = Joi.object({
   emailAddress: Joi.string().email().required(),
@@ -46,7 +45,7 @@ export class EmailChecker {
     credentials: Credentials,
     validator: Validator,
     client: MoselClient,
-    token: Token
+    token: Token | null
   ) => {
     return new Checker(validator, credentials, client, configuration).check(
       input,

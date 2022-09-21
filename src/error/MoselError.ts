@@ -16,6 +16,7 @@ export class MoselError extends Error {
   ) {
     super();
     this.description = description;
+    this.message = description;
     this.status = status;
     this.source = source;
     this.parameters = parameters;

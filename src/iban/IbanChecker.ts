@@ -26,7 +26,7 @@ export class IbanChecker {
         credentials: Credentials,
         validator: Validator,
         client: MoselClient,
-        token: Token
+        token: Token | null
     ) => {
         return new Checker(validator, credentials, client, configuration).check(
             input,

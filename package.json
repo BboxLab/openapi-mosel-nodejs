@@ -1,11 +1,12 @@
 {
   "name": "@bboxlab/mosel-sdk",
-  "version": "0.1.3",
+  "version": "0.1.13",
   "description": "",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "scripts": {
     "build": "rm -rf dist && rollup -c",
+    "push": "rm -rf dist && rollup -c && yalc publish",
     "test": "jest"
   },
   "files": [
@@ -26,12 +27,15 @@
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.3",
-    "@types/jest": "^28.1.6",
-    "@types/node": "^18.0.3",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/jest": "^28.1.8",
+    "@types/joi": "^17.2.3",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.7.18",
     "babel-jest": "^28.1.3",
     "jest": "^28.1.3",
     "rollup": "^2.76.0",
-    "ts-jest": "^28.0.7",
+    "ts-jest": "^28.0.8",
     "typescript": "^4.7.4"
   }
 }
