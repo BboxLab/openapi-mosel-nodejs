@@ -13,7 +13,6 @@ beforeEach(() => {
 });
 
 test("email-check-default", async () => {
-  console.log("From test");
   const validator = new Validator();
   const credentials = new Credentials("test-fake-login", "test-fake-password");
   const client = new MoselClient();
