@@ -4,8 +4,7 @@ import { Checker} from "../checker/Checker";
 import { MoselClient } from "../client/MoselClient";
 import { Configuration } from "../configuration/Configuration";
 import { Validator } from "../validation/Validator";
-
-const Joi = require("joi");
+import Joi from "joi";
 
 export const ibanInputValidationSchema = Joi.object({
   iban: Joi.string().required(),
