@@ -5,6 +5,7 @@ import { Configuration } from "../configuration/Configuration";
 import { Validator } from "../validation/Validator";
 import { Response } from "../response/Response";
 import { Credentials } from "../authentication/Credentials";
+import { MoselError } from "../error/MoselError";
 
 export class Checker {
     validator: Validator;
@@ -24,7 +25,7 @@ export class Checker {
         this.configuration = configuration;
     }
 
-    writeCustomResponse = (response) => {
+    writeCustomResponse = (response: any) => {
         if (!response) {
             return {
                 'responseLabel':  true
@@ -36,7 +37,7 @@ export class Checker {
     check = async(
         input:any,
         inputValidationSchema: any,
-        configurationType:string,
+        configurationType:'oauthCredentialsUrl' | 'emailAddressUrl' | 'ibanUrl' | 'portabilityUrl',
         ouputValidationSchema: any,
         token:Token | null = null,
         responseLabel = 'response'
@@ -54,6 +55,10 @@ export class Checker {
         );
 
         // 3) fetch the check email address api with token and input
+        if (configurationType == undefined) {
+            throw new MoselError(`[Mosel Error]: no configuration type`);
+        }
+
         let checkResponse = await this.client.requestBtOpenApi(
             this.client.postMethod,
             this.configuration[configurationType],

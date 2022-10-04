@@ -7,7 +7,7 @@ export class MoselClient {
 
   async requestBtOpenApi(
     method: string,
-    url: string,
+    url: string|undefined,
     data: null | object = null,
     headers: undefined | AxiosRequestHeaders = undefined,
     auth: undefined | AxiosBasicCredentials = undefined,

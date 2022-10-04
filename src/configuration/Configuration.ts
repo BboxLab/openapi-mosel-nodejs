@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 export const configurationValidationSchema = Joi.object({
   name: Joi.string().required(),
@@ -8,10 +8,11 @@ export const configurationValidationSchema = Joi.object({
   portabilityUrl: Joi.string().uri()
 });
 
+
 export class Configuration {
-  name: string;
-  oauthCredentialsUrl: string;
-  emailAddressUrl: string;
-  ibanUrl: string;
-  portabilityUrl: string;
+  name: string | undefined;
+  oauthCredentialsUrl: string | undefined;
+  emailAddressUrl: string | undefined;
+  ibanUrl: string | undefined;
+  portabilityUrl: string | undefined;
 }

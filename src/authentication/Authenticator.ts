@@ -55,6 +55,9 @@ export class Authenticator {
     // check token date expiration
     if (!token) {
       try {
+        if(!configuration.oauthCredentialsUrl) {
+          throw new MoselError(`[Mosel Error]: an error occurs when fetching token for authentication`);
+        }
         const oauthResponse = await client.requestBtOpenApi(
           client.postMethod,
           configuration.oauthCredentialsUrl,
