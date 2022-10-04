@@ -6,7 +6,7 @@ const extensions = [".js", ".ts"];
 
 // CommonJS (for Node) and ES module (for bundlers) build.
 export default {
-  input: "src/index.ts",
+  input: "dist/index.js",
   output: [
     {
       file: pkg.main,

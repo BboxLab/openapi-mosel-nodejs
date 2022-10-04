@@ -6,8 +6,8 @@
   "module": "dist/index.esm.js",
   "scripts": {
     "ts": "tsc",
-    "build": "tsc && rm -rf dist && rollup -c",
-    "push": "tsc && rm -rf dist && rollup -c && yalc publish",
+    "build": "rm -rf dist && tsc && rollup -c",
+    "push": "rm -rf dist && tsc && rollup -c && yalc publish",
     "test": "jest"
   },
   "files": [
