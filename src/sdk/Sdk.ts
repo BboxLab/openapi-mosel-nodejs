@@ -6,6 +6,10 @@ import { EmailChecker, EmailCheckerInput } from "../email/EmailChecker";
 import { IbanChecker, IbanCheckerInput } from "../iban/IbanChecker";
 import { Validator } from "../validation/Validator";
 
+export const testSdkFunction = () => {
+  return 'hello';
+}
+
 export class Sdk {
   configuration: Configuration;
   credentials: Credentials;
