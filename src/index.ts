@@ -19,7 +19,3 @@ export * from "./client/MoselClient";
 
 // Response
 export * from "./response/Response";
-
-export const myTest = () => {
-  return "hello world";
-}
