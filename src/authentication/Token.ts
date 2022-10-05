@@ -1,9 +1,9 @@
 export class Token {
-  access_token: string;
-  expires_in: number;
-  token_type: string;
-  refresh_credit: number;
-  created_at: Date;
-  scope: string;
-  new: boolean;
+  access_token: string | undefined;
+  expires_in: string | undefined;
+  token_type: string | undefined;
+  refresh_credit: number| undefined;
+  created_at: Date| undefined;
+  scope: string| undefined;
+  new: boolean| undefined;
 }

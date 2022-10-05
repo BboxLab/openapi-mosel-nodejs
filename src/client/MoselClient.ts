@@ -1,4 +1,4 @@
-const axios = require("axios").default;
+import axios from "axios";
 import { AxiosBasicCredentials, AxiosRequestConfig, AxiosRequestHeaders } from "axios";
 
 export class MoselClient {
@@ -7,10 +7,10 @@ export class MoselClient {
 
   async requestBtOpenApi(
     method: string,
-    url: string,
+    url: string|undefined,
     data: null | object = null,
-    headers: null | AxiosRequestHeaders = null,
-    auth: null | AxiosBasicCredentials = null,
+    headers: undefined | AxiosRequestHeaders = undefined,
+    auth: undefined | AxiosBasicCredentials = undefined,
     timeout: number = 4000
   ): Promise<any> {
     const config: AxiosRequestConfig = {

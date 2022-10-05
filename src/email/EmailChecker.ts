@@ -24,11 +24,11 @@ export class EmailCheckerInput {
 }
 
 export class EmailCheckerOutput {
-  contactEmailAddress: boolean;
-  validEmailAddress: boolean;
+  contactEmailAddress: boolean | undefined;
+  validEmailAddress: boolean | undefined;
 }
 
-export function handleError(error, input) {
+export function handleError(error:any, input:any) {
   if (error) {
     return {
       error: "Validation Error",
