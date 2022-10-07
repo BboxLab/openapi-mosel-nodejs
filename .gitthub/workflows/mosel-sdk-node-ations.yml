@@ -1,0 +1,24 @@
+name: mosel-sdk-node-actions
+
+on:
+  push: 
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+permissions:
+  content: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install depedencies
+        id: install-packages
+        run: npm i
+
+      - name: Run tests
+        id: launch-tests
+        run: npm run test
