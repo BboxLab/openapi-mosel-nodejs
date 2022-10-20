@@ -33,6 +33,8 @@ const configuration = new ConfigurationCreator().createApConfig();
 const sdk = new Sdk(credentials, configuration);
 ```
 
+Don't forget to replace the credentials by real ones.
+
 After creating the sdk, you just need to add the service you need. In this example, it is checkEmail()
 
 Check email needs an email input. EmailInput is a JS object containing an emailAddress property.
@@ -84,7 +86,7 @@ The project will be build with rollup.
 npm run build
 ```
 
-## Tutorial: integrating the mosel-sdk package in a common js app.
+## Tutorial: integrating the mosel-sdk package in a common js app
 
 Requirements:
 
@@ -141,7 +143,7 @@ In package json, we add a script for start : "start": "node app.js"
 npm i @bboxlab/mosel-sdk
 ```
 
-Replace code in app.js by
+Replace code in app.js by with real credentials:
 
 ```js
 const Mosel = require("@bboxlab/mosel-sdk");
@@ -179,3 +181,7 @@ Response {
 ### About require
 
 If you use cjs and "require" to import module, you need to add the reference to Mosel before all imported objects. For exemple "new Mosel.Sdk()" and "new Sdk()".
+
+## Help
+
+If it doesn't work, have you replace the credentials by real ones?
