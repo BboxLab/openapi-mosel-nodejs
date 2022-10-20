@@ -91,7 +91,7 @@ Requirements:
 - node
 - npm
 
-### Create a cjs simple project
+### Creating a cjs simple project
 
 First, create a folder with a js file.
 
@@ -135,7 +135,7 @@ In package json, we add a script for start : "start": "node app.js"
 }
 ```
 
-### Install the project
+### Installing mosel sdk
 
 ```
 npm i @bboxlab/mosel-sdk
